@@ -4,7 +4,7 @@
    standard tool for encrypting passwords. Mongoose is our tool for
    interacting with our mongo database.
 */
-// const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 
 /* When generating a password hash, bcrypt (and most other password hash

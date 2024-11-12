@@ -1,4 +1,5 @@
 const models = require('../models');
+
 const { Account } = models;
 
 const loginPage = (req, res) => {
@@ -14,20 +15,20 @@ const logout = (req, res) => {
 };
 
 const login = (req, res) => {
-//   const username = `${req.body.username}`;
-//   const password = `${req.body.pass}`;
+  const username = `${req.body.username}`;
+  const pass = `${req.body.pass}`;
 
-//   if (!username || !password) {
-//     return res.status(400).json({ error: 'RAWR! All fields are required' });
-//   }
+    if (!username || !pass) {
+      return res.status(400).json({ error: 'All fields are required!' });
+    }
 
-//   return Account.AccountModel.authenticate(username, password, (err, account) => {
-//     if (err || !account) {
-//       return res.status(401).json({ error: 'Wrong username or password' });
-//     }
+    return Account.authenticate(username, pass, (err, account) => {
+      if (err || !account) {
+        return res.status(401).json({ error: 'Wrong username or password!' });
+      }
 
-//     return res.json({ redirect: '/maker' });
-//   });
+    return res.json({ redirect: '/maker' });
+  });
 };
 
 const signup = async (req, res) => {
@@ -53,7 +54,7 @@ const signup = async (req, res) => {
     if (err.code === 11000) {
       return res.status(404).json({ error: 'Username already in use!' });
     }
-    return res.status(500).json({ error: 'An error occured! '});
+    return res.status(500).json({ error: 'An error occured! ' });
   }
 };
 
