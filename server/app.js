@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const favicon = require('serve-favicon');
+const bodyParser = require('body-parser'); // TODO: remove
 const mongoose = require('mongoose');
 const expressHandlebars = require('express-handlebars');
 const helmet = require('helmet');
@@ -26,9 +27,8 @@ app.use(helmet());
 app.use('/assets', express.static(path.resolve(`${__dirname}/../hosted/`)));
 app.use(favicon(`${__dirname}/../hosted/img/favicon.png`));
 app.use(compression());
-
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json);
+app.use(bodyParser.urlencoded({ extended: true }));// TODO: remove
+app.use(bodyParser.json());// TODO: remove
 
 app.use(session({
   key: 'sessionid',
